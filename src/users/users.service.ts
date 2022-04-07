@@ -40,7 +40,7 @@ export class UserService {
         const user: User = await this.userRepository.findByPk(addRoleDto.user_id);
         const role: Role = await this.roleService.getRoleByValue(addRoleDto.value);
         if (role && user) {
-            await user.$add('role', role.id);
+            await user.$add('roles', role.id);
             return user;
         }
         throw new HttpException('Пользователь или роль не найдены', HttpStatus.NOT_FOUND)
